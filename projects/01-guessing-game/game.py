@@ -1,19 +1,22 @@
 import random
 
+LOW = 100
+HIGH = 200
+MAX_ATTEMPTS = 3
 keep_playing = True
 
 while keep_playing:
-    set_num = random.randint(1, 100)
-    attempts_left = 5
+    set_num = random.randint(LOW, HIGH)
+    attempts_left = MAX_ATTEMPTS
     has_won = False
 
     while attempts_left > 0 and not has_won:
         while True:
             try:
-                guess_num = int(input("Enter a number from 1-100: "))
-                if 1 <= guess_num <= 100:
+                guess_num = int(input(f"Enter a number from {LOW}-{HIGH}: "))
+                if LOW <= guess_num <= HIGH:
                     break
-                print("Number must be 1 to 100 only")
+                print(f"Number must be {LOW}-{HIGH} only")
 
             except ValueError:
                 print("Not a number")
@@ -29,10 +32,10 @@ while keep_playing:
         else:
             print("low")
 
-        print("attempts left = ", attempts_left)
+        print(f"{attempts_left} left")
 
     if not has_won:
         print("correct num", set_num)
 
-    answer = str(input("Play Again ? y/n: "))
+    answer = input("Play Again ? y/n: ")
     keep_playing = answer.lower() == "y"
