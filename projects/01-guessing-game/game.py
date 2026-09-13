@@ -5,21 +5,24 @@ HIGH = 200
 MAX_ATTEMPTS = 3
 keep_playing = True
 
+def get_valid_guess(low, high):
+    while True:
+        try:
+            guess= int(input(f"Enter a number from {low}-{high}: "))
+            if low <= guess <= high:
+                 return guess
+            print (f"Number must be {low}-{high}")
+        except ValueError:
+            print("Not a number")
+
 while keep_playing:
     set_num = random.randint(LOW, HIGH)
     attempts_left = MAX_ATTEMPTS
     has_won = False
 
     while attempts_left > 0 and not has_won:
-        while True:
-            try:
-                guess_num = int(input(f"Enter a number from {LOW}-{HIGH}: "))
-                if LOW <= guess_num <= HIGH:
-                    break
-                print(f"Number must be {LOW}-{HIGH} only")
 
-            except ValueError:
-                print("Not a number")
+        guess_num = get_valid_guess(LOW, HIGH)
 
         attempts_left -= 1
 
