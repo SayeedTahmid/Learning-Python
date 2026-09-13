@@ -3,7 +3,6 @@ import random
 LOW = 100
 HIGH = 200
 MAX_ATTEMPTS = 3
-keep_playing = True
 
 def get_valid_guess(low, high):
     while True:
@@ -43,12 +42,16 @@ def play_round(low,high,max_attempts):
 
      return has_won    
 
-               
-while keep_playing:
+def main():               
 
-    play_round(LOW,HIGH,MAX_ATTEMPTS)
-    answer = input("Play Again ? y/n: ")
-    keep_playing = answer.lower() == "y"
+    keep_playing=True
+    while keep_playing:
 
+       play_round(LOW,HIGH,MAX_ATTEMPTS)
+       answer = input("Play Again ? y/n: ")
+       keep_playing = answer.lower() == "y"
+
+if __name__=="__main__":
+     main()
 
    
